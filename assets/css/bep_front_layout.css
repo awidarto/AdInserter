@@ -1,0 +1,98 @@
+
+body {
+    /*background: transparent url(../images/background.gif);*/
+		background-color: #8f8e8e;
+}
+
+#wrapper {
+    background-color: #FFF;
+    width: 850px;
+    margin: 25px auto auto auto;
+    padding: 0px;
+    border: 3px solid #cccccc;
+
+	-moz-border-radius-bottomright: 8px;
+	border-bottom-right-radius: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	border-bottom-left-radius: 8px;
+	-moz-border-radius-topright: 8px;
+	border-top-right-radius: 8px;
+	-moz-border-radius-topleft: 8px;
+	border-top-left-radius: 8px;
+
+}
+
+#header {
+	padding:1.2em;
+    background: repeat-y url(../images/bg_top.jpg);
+	-moz-border-radius-topright: 8px;
+	border-top-right-radius: 8px;
+}
+
+#header h1 {
+    background: no-repeat url(../images/Bigjava-logo.png);
+    border-bottom: 0px solid #777;
+    color: #555;
+    padding-bottom: 0.2em;
+}
+
+#content{
+	padding:0.3em 2em;
+}
+
+#content h3 {
+    color: #434690;
+}
+
+#footer {
+    text-align: center;
+	padding:1em;
+}
+
+ul#menu {
+	position:relative;
+	list-style-type:none;
+	margin-top:0px;
+	margin-bottom:20px;
+	margin-right:0px;
+	width:50%;
+}
+
+ul#menu li{
+	float:right;
+	margin:0px 5px;
+}
+
+ul#menu li a{
+	display:block;
+	padding:10px;
+	padding-left:20px;
+	font-weight:bold;
+	text-decoration:none;
+	font-size:14px;
+	color:black;
+}
+
+.clear{
+	clear:both;
+}
+
+.annotation{
+	font-size:0.95em;
+}
+
+.actual{
+	font-weight:bold;
+}
+
+#calendar{
+	/*width:800px;*/
+}
+
+td {
+	padding:3px 0;
+}
+
+#login_cell{
+	background: no-repeat url(../icons/titles/126/gembok.png) 50px 15px;
+}

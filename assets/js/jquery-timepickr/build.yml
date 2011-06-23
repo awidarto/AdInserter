@@ -1,0 +1,55 @@
+title: jquery.timepickr
+version: 0.7.0a
+svnrev: true
+dest: standalone/ui-timepickr/dist/
+modules:
+  - name: "timepickr"
+    destfile: jquery.timepickr.js
+    depends:
+      - src: src/ui.core.js
+      - src: src/jquery.utils.js
+      - src: src/jquery.strings.js
+      - src: standalone/ui-timepickr/src/ui.timepickr.js
+  - name: "uitimepickr"
+    destfile: ui.timepickr.js
+    depends:
+      - src: src/jquery.utils.js
+      - src: src/jquery.strings.js
+      - src: standalone/ui-timepickr/src/ui.timepickr.js
+
+copy: 
+  - src: demo/themes/default/images/*.png
+    dest: standalone/ui-timepickr/dist/themes/default/images/
+  - src: demo/themes/default/*.css
+    dest: standalone/ui-timepickr/dist/themes/default/
+  - src: src/jquery.ui.all.js
+    dest: standalone/ui-timepickr/page/jquery.ui.all.js
+  - src: src/jquery.utils.js
+    dest: standalone/ui-timepickr/page/jquery.utils.js
+  - src: src/jquery.anchorHandler.js
+    dest: standalone/ui-timepickr/page/jquery.anchorHandler.js
+  - src: src/jquery.strings.js
+    dest: standalone/ui-timepickr/page/jquery.strings.js
+  - src: src/jquery.js
+    dest: standalone/ui-timepickr/page/jquery.js
+
+merge:
+  - dest: standalone/ui-timepickr/dist/jquery.timepickr.css
+    files:
+      - src: standalone/ui-timepickr/dist/themes/default/ui.core.css
+      - src: standalone/ui-timepickr/src/css/ui.timepickr.css
+
+merge:
+  - dest: standalone/ui-timepickr/dist/themes/default/ui.timepickr.css
+    files:
+      - src: standalone/ui-timepickr/src/css/ui.timepickr.css
+zip:
+  - dest: standalone/ui-timepickr/downloads/jquery.timepickr-%v-standalone.zip
+    src: standalone/ui-timepickr/
+    exclude: [".svn", "downloads", "build.yml", "demo"]
+
+gzip:
+  - dest: standalone/ui-timepickr/downloads/jquery.timepickr-%v-standalone.tar.gz
+    src: standalone/ui-timepickr/
+    exclude: [".svn", "downloads", "build.yml", "demo"]
+

@@ -1,0 +1,35 @@
+INFO  - 2011-06-05 21:49:52 --> Base path set to: /Applications/xampp/xamppfiles/htdocs/adplatform/
+INFO  - 2011-06-05 21:49:52 --> Base dir set to: /adplatform/
+INFO  - 2011-06-05 21:49:52 --> System path set to: /Applications/xampp/xamppfiles/htdocs/adplatform/system/
+INFO  - 2011-06-05 21:49:52 --> Application path set to: /Applications/xampp/xamppfiles/htdocs/adplatform/system/application/
+INFO  - 2011-06-05 21:49:52 --> Modules path set to: /Applications/xampp/xamppfiles/htdocs/adplatform/modules/
+INFO  - 2011-06-05 21:49:52 --> Logs path set to: /Applications/xampp/xamppfiles/htdocs/adplatform/system/logs/
+INFO  - 2011-06-05 21:49:52 --> Cache path set to: /Applications/xampp/xamppfiles/htdocs/adplatform/system/cache/
+INFO  - 2011-06-05 21:49:52 --> New feature 'FileSystem Check' created
+INFO  - 2011-06-05 21:49:52 --> New feature 'Setup FileSystem' created
+INFO  - 2011-06-05 21:49:52 --> New feature 'Setup Database' created
+INFO  - 2011-06-05 21:49:52 --> Feature 'Setup FileSystem' now has prerequisite 'FileSystem Check'
+INFO  - 2011-06-05 21:49:52 --> Feature 'Setup Database' now has prerequisite 'Setup FileSystem'
+INFO  - 2011-06-05 21:49:52 --> Component 'Log Folder writable' attached to feature 'FileSystem Check'
+INFO  - 2011-06-05 21:49:52 --> Component 'Asset folders writable' attached to feature 'FileSystem Check'
+INFO  - 2011-06-05 21:49:52 --> Component 'Cache Folder writable' attached to feature 'FileSystem Check'
+INFO  - 2011-06-05 21:49:52 --> Component 'Config files writable' attached to feature 'FileSystem Check'
+INFO  - 2011-06-05 21:49:52 --> Component 'Create new system config file' attached to feature 'Setup FileSystem'
+INFO  - 2011-06-05 21:49:52 --> Component 'Create new database config file' attached to feature 'Setup FileSystem'
+INFO  - 2011-06-05 21:49:52 --> Component 'Create new ReCAPTCHA config file' attached to feature 'Setup FileSystem'
+INFO  - 2011-06-05 21:49:52 --> Component 'Connect to database' attached to feature 'Setup Database'
+INFO  - 2011-06-05 21:49:52 --> Component 'Update table schema' attached to feature 'Setup Database'
+INFO  - 2011-06-05 21:49:52 --> Component 'Create administrator user account' attached to feature 'Setup Database'
+INFO  - 2011-06-05 21:49:52 --> Log Folder writable Component installed
+INFO  - 2011-06-05 21:49:52 --> Asset folders writable Component installed
+INFO  - 2011-06-05 21:49:52 --> Cache Folder writable Component installed
+INFO  - 2011-06-05 21:49:52 --> Config files writable Component installed
+INFO  - 2011-06-05 21:49:52 --> FileSystem Check Feature installed
+INFO  - 2011-06-05 21:49:52 --> Create new system config file Component installed
+INFO  - 2011-06-05 21:49:52 --> Create new database config file Component installed
+INFO  - 2011-06-05 21:49:52 --> Create new ReCAPTCHA config file Component installed
+INFO  - 2011-06-05 21:49:52 --> Setup FileSystem Feature installed
+INFO  - 2011-06-05 21:49:52 --> Connect to database Component installed
+INFO  - 2011-06-05 21:49:52 --> Update table schema Component installed
+INFO  - 2011-06-05 21:49:52 --> Create administrator user account Component installed
+INFO  - 2011-06-05 21:49:52 --> Setup Database Feature installed
