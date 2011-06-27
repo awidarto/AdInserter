@@ -1,5 +1,7 @@
 system/logs/*
 system/application/config.php
+system/application/database.php
+system/application/syscon.php
 ci_user_guide/*
 __nstal__
 public/ad/*
