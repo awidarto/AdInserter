@@ -1,4 +1,5 @@
 system/logs/*
+system/application/config.php
 ci_user_guide/*
 __nstal__
 public/ad/*
