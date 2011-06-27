@@ -1,0 +1,6 @@
+system/logs/*
+ci_user_guide/*
+__nstal__
+public/ad/*
+user_guide/*
+.DS_Store
