@@ -685,7 +685,15 @@ class Ad extends Public_Controller
         
         $tld = $this->_get_tld($uri);
         
-        print json_encode(array('device'=>$device,'uri'=>$uri));
+        $dom = $this->ad_model->getPosition(array('toplevelhost'=>$tld));
+        if($dom->num_rows()>0){
+            $pos = $dom->row_array();
+            $pos = $pos['pos'];
+        }else{
+            $pos = 'both';
+        }
+        
+        print $pos;
     }
 
 	/**
