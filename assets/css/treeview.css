@@ -7,15 +7,15 @@
 }
     
 .treeview .hitarea {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 25px;
     float: left;
     margin-left: -16px;
     cursor: pointer;
 }
 
-.treeview .expandable { background: transparent url(../icons/bullet_toggle_plus.png) no-repeat; }
-.treeview .collapsable { background: transparent url(../icons/bullet_toggle_minus.png) no-repeat; }
+.treeview .expandable { background: transparent url(../icons/plus.gif) no-repeat 50% 80%; }
+.treeview .collapsable { background: transparent url(../icons/minus.gif) no-repeat 50% 80%; }
 
 
 /*.fileview ul { padding-left: 16px; }

@@ -60,8 +60,8 @@
 }
 
 /* MENU NAVIGATION */
-#navigation #menu { padding: 2em 0 2em 2em; }
-#navigation #menu a { color: #000; text-decoration: none; }
+#navigation #menu { padding: 2em 0 2em 2em;font-weight:bold;font-size:14px; }
+#navigation #menu a { color: #000; text-decoration: none;line-height:2em;padding:5px;padding-left:0px; }
 #navigation #menu a:hover { text-decoration: underline; }
 
 /* STANDARD STYLES */

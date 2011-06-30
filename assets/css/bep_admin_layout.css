@@ -4,13 +4,22 @@ body { margin: 0px; }
 #wrapper { position: relative; width: 100%; }
 
 #header {
+	padding:10px 1em;
+    background: repeat-y url(../images/bg_top.jpg);
     position: fixed;
     top: 0px;
     width: 100%;
     background-color: #333;
-    line-height: 2em;
+    line-height: 1em;
     color: #FFF;
     z-index: 5;
+}
+
+#header h1 {
+    background: no-repeat url(../images/Bigjava-logo.png);
+    border-bottom: 0px solid #777;
+    color: #555;
+	line-height:1.2em;
 }
 
 #header a { color: #FFF; text-decoration: none; font-weight: bold; }
@@ -23,25 +32,48 @@ body { margin: 0px; }
     padding-left: 20px;
     background: transparent url(../icons/application.png) no-repeat 0 50%;
 }
-#info { float: right; margin-right: 1em; }
+#info {
+	float: right; 
+	margin-right: 2em;
+	margin-bottom:5px;
+}
+
+#info a {
+	font-weight:bold;
+	font-size:12px;
+	color:orange;
+	line-height: 1.2em; 
+	text-decoration:none;
+	padding:20px 30px;
+}
+
+#info a:hover {
+	color:maroon;
+}
 
 
 #content { 
     position: relative;
-    padding: 4em 1em 3em 18em;
+    padding: 0em 1em 3em 18em;
+	margin-top:150px;
     border-left: 1px #CCC solid; 
     z-index: 1;
 }
 
 #breadcrumb {
+	font-size:14px;
     position: fixed;
     width: 100%;
     line-height: 2em;
     background-color: #EFEFEF;
-    top: 2em;
-    padding-left: 18em;
-    border-left: 1px #CCC solid; 
+    top: 120px;
+    padding-left: 220px;
+    border-bottom: 1px #CCC solid; 
     z-index: 2; 
+}
+
+#breadcrumb a{
+	font-weight:bold;
 }
 
 #navigation {
@@ -49,8 +81,8 @@ body { margin: 0px; }
     left: 0px;
     width: 17em;
     height: 100%;
-    background-color: #E0E2F3;
-    top: 2em;
+    background-color: #EBEBEC;
+    top: 120px;
     border-right: 1px #CCC solid;
     z-index: 3; 
 }
@@ -63,11 +95,24 @@ body { margin: 0px; }
     line-height: 2em;
     border-top: 1px #CCC solid; 
     z-index: 4; 
+	background: repeat-y url(../images/bg_top_rev.jpg);
 }
 #footer a { color: #000; }
 
-#copyright { float: left; margin-left: 1em; }
+#copyright { float: right; margin-right: 1em; }
 #version { float: right; margin-right: 1em; }
 
 /* Setup the modified style for the CI profiler output */
 #codeigniter_profiler { margin: 0pt 0pt 3em 18em; }
+
+.icon_admin_logout { padding: 1px 0 1px 25px; background: url(../icons/titles/32/logout.png) no-repeat 0px 50%;}
+.icon_view_website { padding: 1px 0 1px 25px; background: url(../icons/titles/32/view-website.png) no-repeat 0px 50%;}
+.icon_admin_dashboard { padding: 1px 0 1px 25px; background: url(../icons/titles/32/dashboard.png) no-repeat 0px 50%;}
+.icon_admin_member { padding: 1px 0 1px 25px; background: url(../icons/titles/32/member.png) no-repeat 0px 50%;}
+.icon_admin_setting { padding: 1px 0 1px 25px; background: url(../icons/titles/32/setting.png) no-repeat 0px 50%;}
+.icon_admin_access { padding: 1px 0 1px 25px; background: url(../icons/titles/32/access-control.png) no-repeat 0px 50%;}
+.icon_admin_system { padding: 1px 0 1px 25px; background: url(../icons/titles/32/system.png) no-repeat 0px 50%;}
+
+
+
+

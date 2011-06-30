@@ -681,8 +681,11 @@ class Ad extends Public_Controller
         imagedestroy($img);
     }
     
-    function txt(){
-        print 'this is a test';
+    function rules($device,$uri){
+        
+        $tld = $this->_get_tld($uri);
+        
+        print json_encode(array('device'=>$device,'uri'=>$uri));
     }
 
 	/**
@@ -833,6 +836,24 @@ class Ad extends Public_Controller
 		return $result;
 
 	}	
+    
+    function _get_tld( $url )
+    {
+    	$return_value = '';
+
+    	$url_parts = parse_url( (string) $url );
+    	if( is_array( $url_parts ) && isset( $url_parts[ 'host' ] ) )
+    	{
+    		$host_parts = explode( '.', $url_parts[ 'host' ] );
+    		if( ( $tld = array_pop( $host_parts ) ) !== null && ( $tlh = array_pop( $host_parts ) ) !== null )
+    		{
+    			$return_value = implode( '.', array( $tlh, $tld ) );
+    		}
+    	}
+
+    	return $return_value;
+    }
+    
     
 	
 }

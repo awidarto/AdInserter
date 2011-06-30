@@ -11,9 +11,10 @@
 
 <div id="wrapper">
     <div id="header">
-        <div id="site"><?php print $this->preference->item('site_name')?></div>
+        <h1>&nbsp;</h1>
         <div id="info">
-            <?php print anchor('',$this->lang->line('backendpro_view_website'),array('class'=>'icon_world_go'))?>&nbsp;&nbsp;&nbsp;&nbsp;
-            <?php print anchor('auth/logout',$this->lang->line('userlib_logout'),array('class'=>'icon_key_go'))?>
+            <?php print anchor('',$this->bep_assets->icon('titles/32/view-website'))?>&nbsp;&nbsp;&nbsp;&nbsp;
+            <?php print anchor('auth/logout',$this->bep_assets->icon('titles/32/logout'))?>
         </div>
     </div>
+    
