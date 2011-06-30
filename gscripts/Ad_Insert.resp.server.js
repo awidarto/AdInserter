@@ -52,6 +52,15 @@
 // ---------------
 //trace = responseheader;
 
+//set base url here
+
+var base_url = "http://localhost/adplatform/";
+
+//import java packages
+importPackage(Packages.java.net);
+importPackage(Packages.java.io);
+importPackage(Packages.java.lang);
+
 //Find html body
 a1 = httpresponse.indexOf("<body");
 a2 = httpresponse.indexOf(">",a1)+1;
@@ -75,13 +84,33 @@ if(useragent.indexOf("iPhone") > 0){
 }else{
     device = "generic";
 }
-  
+
+var uri = requestedurl.split(":");
+var requri;
+
+if(uri.length > 1){
+    requri = uri[1];
+}else{
+    requri = requestedurl;
+}
+
+var url = new java.net.URL(base_url + "ad/rules/"+device+"/"+uri[1]);
+var connection = url.openConnection();
+var reader = new java.io.BufferedReader(new java.io.InputStreamReader( connection.getInputStream()));
+var txtresponse = new StringBuilder();
+while ((resp = reader.readLine()) != null) {
+    txtresponse.append(resp);
+}
+reader.close();
+
+var rules = eval(txtresponse);
 
 //update response
 httpresponse = httpresponse.substring(0,a2)
-        +"<a style='position:absolute;top:0;' href='http://192.168.1.113/ad/ad/uri/" +sessid+ "'>"
-    +"<img src='http://192.168.1.113/ad/ad/img/" + sessid + "/" + device + "' alt='banner_ad' style='clear:both;' />"
+        +"<a style='position:absolute;top:0;' href='"+base_url+"ad/uri/" +sessid+ "'>"
+    +"<img src='"+base_url+"ad/img/" + sessid + "/" + device + "' alt='banner_ad' style='clear:both;' />"
         +"</a>"
+        +txtresponse
     +httpresponse.substring(a2);
 
 //store updated counter value
