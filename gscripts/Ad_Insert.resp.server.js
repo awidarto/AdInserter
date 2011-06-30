@@ -65,12 +65,14 @@ importPackage(Packages.java.lang);
 a1 = httpresponse.indexOf("<body");
 a2 = httpresponse.indexOf(">",a1)+1;
 
+
 // create / retrieve a transient variable called counter and increased it
 i = sharedcache.get("counter");
 i++;
 
 //create session id
-var sessid = makeid();
+var sessid1 = makeid();
+var sessid2 = makeid();
 
 start = requestheader.indexOf("User-Agent: " ) + "User-Agent: ".length;
 end = requestheader.indexOf("\r\n", start);
@@ -103,15 +105,30 @@ while ((resp = reader.readLine()) != null) {
 }
 reader.close();
 
-var rules = eval(txtresponse);
+var rules = txtresponse;
 
 //update response
-httpresponse = httpresponse.substring(0,a2)
-        +"<a style='position:absolute;top:0;' href='"+base_url+"ad/uri/" +sessid+ "'>"
-    +"<img src='"+base_url+"ad/img/" + sessid + "/" + device + "' alt='banner_ad' style='clear:both;' />"
-        +"</a>"
-        +txtresponse
-    +httpresponse.substring(a2);
+if(rules == 'both' || rules == 'top'){
+	httpresponse = httpresponse.substring(0,a2)
+	        +"<a style='position:absolute;top:0;' href='"+base_url+"ad/uri/" + sessid1 + "'>"
+	    	+"<img src='"+base_url+"ad/img/" + sessid + "/" + device + "' alt='banner_ad' style='clear:both;' />"
+	        +"</a>"
+	        +txtresponse
+	    +httpresponse.substring(a2);
+}
+
+b1 = httpresponse.indexOf("</body");
+b2 = httpresponse.indexOf(">",b1)+1;
+
+if(rules == 'both' || rules == 'bottom'){
+	httpresponse = httpresponse.substring(0,b1)
+	        +"<a style='position:absolute;top:0;' href='"+base_url+"ad/uri/" + sessid2 + "'>"
+	    	+"<img src='"+base_url+"ad/img/" + sessid + "/" + device + "' alt='banner_ad' style='clear:both;' />"
+	        +"</a>"
+	        +txtresponse
+	    +httpresponse.substring(b2);
+}
+
 
 //store updated counter value
 sharedcache.put("counter", i);
