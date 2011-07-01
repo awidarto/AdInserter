@@ -247,10 +247,17 @@
 											Set New Dates
 		                </button>
 
-                    <button type="submit" class="positive" name="submit" value="submit">
-                    	<?php print  $this->bep_assets->icon('group');?>
-                    	Set Audience
-                    </button>
+                        <?php if($update == false):?>
+                            <button type="submit" class="positive" name="submit" value="submit">
+                            	<?php print  $this->bep_assets->icon('group');?>
+                            	Set Audience
+                            </button>
+                        <?php else: ?>
+    		                <a href="<?php print  site_url('ad')?>" class="positive">
+    		                	<?php print  $this->bep_assets->icon('tick');?>
+    		                	Back to Campaign
+    		                </a>
+                        <?php endif;?>
 
                 </div>
             </li>

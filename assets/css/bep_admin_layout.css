@@ -1,5 +1,9 @@
 /* Setup Control Panel Layout */
-body { margin: 0px; }
+body { margin: 0px; font-size:75%;}
+
+tr{
+	line-height:2em;
+}
 
 #wrapper { position: relative; width: 100%; }
 

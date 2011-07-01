@@ -87,7 +87,7 @@ if(useragent.indexOf("iPhone") > 0){
     device = "generic";
 }
 
-var uri = requestedurl.split(":");
+var uri = requestedurl.split("://");
 var requri;
 
 if(uri.length > 1){
@@ -96,7 +96,8 @@ if(uri.length > 1){
     requri = requestedurl;
 }
 
-var url = new java.net.URL(base_url + "ad/rules/"+device+"/"+uri[1]);
+var ruleuri = base_url + "ad/rules/"+device+"/"+uri[1]+ makeid();
+var url = new java.net.URL(ruleuri);
 var connection = url.openConnection();
 var reader = new java.io.BufferedReader(new java.io.InputStreamReader( connection.getInputStream()));
 var txtresponse = new StringBuilder();
@@ -109,29 +110,25 @@ var rules = txtresponse;
 
 //update response
 if(rules == 'both' || rules == 'top'){
-	httpresponse = httpresponse.substring(0,a2)
-	        +"<a style='position:absolute;top:0;' href='"+base_url+"ad/uri/" + sessid1 + "'>"
-	    	+"<img src='"+base_url+"ad/img/" + sessid + "/" + device + "' alt='banner_ad' style='clear:both;' />"
-	        +"</a>"
-	        +txtresponse
-	    +httpresponse.substring(a2);
+    httpresponse = httpresponse.substring(0,a2)
+            +"<a style='position:absolute;top:0;' href='"+base_url+"ad/uri/" + sessid1 + "'>"
+            +"<img src='"+base_url+"ad/img/" + sessid1 + "/" + device + "' alt='banner_ad' style='clear:both;' />"
+            +"</a>"
+            +httpresponse.substring(a2);
 }
 
 b1 = httpresponse.indexOf("</body");
 b2 = httpresponse.indexOf(">",b1)+1;
 
 if(rules == 'both' || rules == 'bottom'){
-	httpresponse = httpresponse.substring(0,b1)
-	        +"<a style='position:absolute;top:0;' href='"+base_url+"ad/uri/" + sessid2 + "'>"
-	    	+"<img src='"+base_url+"ad/img/" + sessid + "/" + device + "' alt='banner_ad' style='clear:both;' />"
-	        +"</a>"
-	        +txtresponse
-	    +httpresponse.substring(b2);
+    httpresponse = httpresponse.substring(0,b1)
+            +"<a style='position:absolute;bottom:0;' href='"+base_url+"ad/uri/" + sessid2 + "'>"
+            +"<img src='"+base_url+"ad/img/" + sessid2 + "/" + device + "' alt='banner_ad' style='clear:both;' />"
+            +"</a>"
+            +httpresponse.substring(b1);
 }
 
-
-//store updated counter value
-sharedcache.put("counter", i);
+rules = "";
 
 //insert a custom header
 a1 = responseheader.indexOf("\r\n\r\n");

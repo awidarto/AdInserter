@@ -445,7 +445,7 @@ class Ad extends Public_Controller
 	 * @access public
 	 * @param integer $id Member ID
 	 */
-	function schedule($id = NULL)
+	function schedule($id = NULL,$update = null)
 	{
 		// VALIDATION FIELDS
 		$fields['id'] = "ID";
@@ -502,6 +502,7 @@ class Ad extends Public_Controller
 		{
 
 			// Display form
+			$data['update'] = (is_null($update))?'new':'update';
 			$this->validation->output_errors();
 			$data['header'] = ( is_null($id)?'Create New Schedule':'Set Schedule Dates');
 			$this->bep_site->set_crumb($data['header'],'ad/form/'.$id);
@@ -630,6 +631,8 @@ class Ad extends Public_Controller
     }
 
     function img($adsess = null,$width = null,$height = null,$device = null){
+        $this->load->library('user_agent');
+        
         $ua = $_SERVER;
         unset($ua['HTTP_COOKIE']);
         unset($ua['argc']);
@@ -645,6 +648,18 @@ class Ad extends Public_Controller
         
         $this->ad_model->insert('UserAgentLog',array('ua_text'=>$ua,'http_referer'=>$_SERVER['HTTP_REFERER']));
         //select campaign & image to display
+        
+        $is_browser = $this->agent->is_browser();
+        $is_mobile = $this->agent->is_mobile();
+        $is_robot = $this->agent->is_robot();
+        $is_top = $this->_isTopDomain($_SERVER['HTTP_REFERER']);
+        $browser = $this->agent->browser();
+        $os = $this->agent->platform();
+        
+        $query = sprintf(
+                ""
+            
+            );
         
         $cpn_id = 1;
         
@@ -686,7 +701,7 @@ class Ad extends Public_Controller
         $tld = $this->_get_tld($uri);
         
         $dom = $this->ad_model->getPosition(array('toplevelhost'=>$tld));
-        if($dom->num_rows()>0){
+        if($dom->num_rows > 0){
             $pos = $dom->row_array();
             $pos = $pos['pos'];
         }else{
@@ -844,12 +859,26 @@ class Ad extends Public_Controller
 		return $result;
 
 	}	
+
+    function _isTopDomain($url){
+        $dom = $this->ad_model->getTopDomain(array('domain'=>$url));
+        if($dom->num_rows > 0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    function _get_tld($url){
+        $tld = explode(".",$url);
+        return $tld[count($tld) - 2].".".$tld[count($tld) - 1];
+    }
     
-    function _get_tld( $url )
+    function _get_tld_complete( $url )
     {
     	$return_value = '';
-
-    	$url_parts = parse_url( (string) $url );
+    	
+    	$url_parts = parse_url( (string) $url);
     	if( is_array( $url_parts ) && isset( $url_parts[ 'host' ] ) )
     	{
     		$host_parts = explode( '.', $url_parts[ 'host' ] );
@@ -861,7 +890,6 @@ class Ad extends Public_Controller
 
     	return $return_value;
     }
-    
     
 	
 }
