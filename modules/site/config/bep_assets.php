@@ -102,7 +102,7 @@ $config['asset'][] = array('file'=>'gcal.js', 'position'=>'header');
  */
 $config['asset_group']['SITE'] = 'reset|typography';
 $config['asset_group']['PUBLIC'] = 'bep_front_layout|forms|buttons|bep_icons|fullcalendar|ui_lightness_css|jquery.timepickr|calendrical|jquery|fullcalendar_js|fullcalendar_ui|calendrical_js|timepicker_ui|timepickr_js|colorpicker|FlashStatus';
-$config['asset_group']['ADMIN'] = 'bep_admin_layout|bep_admin_style|FlashStatus|forms|buttons|bep_navigation|treeview|bep_icons|bep_select_all';
+$config['asset_group']['ADMIN'] = 'bep_admin_layout|bep_admin_style|FlashStatus|forms|buttons|bep_navigation|treeview|bep_icons|bep_select_all|fullcalendar|ui_lightness_css|jquery.timepickr|calendrical|jquery|fullcalendar_js|fullcalendar_ui|calendrical_js|timepicker_ui|timepickr_js|colorpicker|';
 
 $config['asset_group']['FORMS'] = "buttons|forms";
 $config['asset_group']['GENERATE_PASSWORD'] = "bep_generate_password.css|bep_generate_password.js";

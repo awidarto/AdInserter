@@ -38,6 +38,7 @@ class Ad_model extends Base_model
                                     'UserAgentLog' => $this->_prefix . 'ua_log',
                                     'TopDomain' => $this->_prefix . 'top_domain',
                                     'Position' => $this->_prefix . 'domain_pos',
+                                    'Widget' => $this->_prefix . 'widget_pos',
                                     );
 
 		log_message('debug','BackendPro : Ad_model class loaded');
@@ -117,6 +118,75 @@ class Ad_model extends Base_model
 		}
 		return $this->db->get();
 	}	
+
+	function matchDomainPosition($where = NULL, $limit = array('limit' => NULL, 'offset' => ''))
+	{
+
+		$this->db->select('*');
+		$this->db->from($this->_TABLES['Position'] . " pos");
+		//$this->db->join($this->_TABLES['CampaignSchedules'] . " sch",'campaign.id=sch.campaign_id');
+		if( ! is_null($where))
+		{
+			$this->db->like($where);
+		}
+		if( ! is_null($limit['limit']))
+		{
+			$this->db->limit($limit['limit'],( isset($limit['offset'])?$limit['offset']:''));
+		}
+		return $this->db->get();
+	}	
+
+	function getWidget($where = NULL, $limit = array('limit' => NULL, 'offset' => ''))
+	{
+
+		$this->db->select('*');
+		$this->db->from($this->_TABLES['Widget'] . " widget");
+		//$this->db->join($this->_TABLES['CampaignSchedules'] . " sch",'campaign.id=sch.campaign_id');
+		if( ! is_null($where))
+		{
+			$this->db->where($where);
+		}
+		if( ! is_null($limit['limit']))
+		{
+			$this->db->limit($limit['limit'],( isset($limit['offset'])?$limit['offset']:''));
+		}
+		return $this->db->get();
+	}	
+	
+	function getBanner($where = NULL, $limit = array('limit' => NULL, 'offset' => ''))
+	{
+
+		$this->db->select('*');
+		$this->db->from($this->_TABLES['Banners'] . " banner");
+		//$this->db->join($this->_TABLES['CampaignSchedules'] . " sch",'campaign.id=sch.campaign_id');
+		if( ! is_null($where))
+		{
+			$this->db->where($where);
+		}
+		if( ! is_null($limit['limit']))
+		{
+			$this->db->limit($limit['limit'],( isset($limit['offset'])?$limit['offset']:''));
+		}
+		$this->db->order_by('width','desc');
+		return $this->db->get();
+	}	
+	function matchTopDomain($where = NULL, $limit = array('limit' => NULL, 'offset' => ''))
+	{
+
+		$this->db->select('*');
+		$this->db->from($this->_TABLES['TopDomain'] . " domain");
+		//$this->db->join($this->_TABLES['CampaignSchedules'] . " sch",'campaign.id=sch.campaign_id');
+		if( ! is_null($where))
+		{
+			$this->db->like($where);
+		}
+		if( ! is_null($limit['limit']))
+		{
+			$this->db->limit($limit['limit'],( isset($limit['offset'])?$limit['offset']:''));
+		}
+		return $this->db->get();
+	}	
+	
 	
 	
 	function incrementField($table,$field,$where)

@@ -82,6 +82,24 @@ class Domains extends Admin_Controller
 	}
 
 	/**
+	 * View Widget
+	 *
+	 * @access public
+	 */
+	function widget()
+	{
+		// Get Member Infomation
+		$data['members'] = $this->ad_model->getWidget();
+		$this->bep_site->set_crumb('Widget Position','ad/admin/domains/widget');
+
+		// Display Page
+		$data['header'] = 'Widget Position';
+		$data['page'] = $this->config->item('backendpro_template_admin') . "domains/view_widget";
+		$data['module'] = 'ad';
+		$this->load->view($this->_container,$data);
+	}
+
+	/**
 	 * Set Profile Defaults
 	 *
 	 * Specify what values should be shown in the profile fields when creating
@@ -359,6 +377,120 @@ class Domains extends Admin_Controller
 		}
 	}
 
+
+	function formwidget($id = NULL)
+	{
+		// VALIDATION FIELDS
+		$fields['id'] = "ID";
+		$fields['toplevelhost'] = "Domain";
+		$fields['pos'] = "Insert Position";
+		$this->validation->set_fields($fields);
+
+		// Setup validation rules
+		if( is_null($id))
+		{
+			// Use create user rules (make sure no-one has the same email)
+			$rules['toplevelhost'] = "trim|required";
+			$rules['pos'] = "trim|required";
+		}
+		else
+		{
+			// Use edit user rules (make sure no-one other than the current user has the same email)
+			$rules['toplevelhost'] = "trim|required";
+			$rules['pos'] = "trim|required";
+		}
+
+		// Setup form default values
+		if( ! is_null($id) AND ! $this->input->post('submit'))
+		{
+			// Modify form, first load
+			$pos = $this->ad_model->getWidget(array('widget.id'=>$id));
+			$pos = $pos->row_array();
+			
+			$this->validation->set_default_value($pos);
+		}
+		elseif( is_null($id) AND ! $this->input->post('submit'))
+		{
+			// Create form, first load
+			$this->validation->set_default_value('toplevelhost','');
+			$this->validation->set_default_value('pos','both');
+
+			// Setup profile defaults
+			$this->_set_profile_defaults();
+		}
+		elseif( $this->input->post('submit'))
+		{
+			// Form submited, check rules
+			$this->validation->set_rules($rules);
+		}
+
+		// RUN
+		if ($this->validation->run() === FALSE)
+		{
+
+			// Display form
+			$this->validation->output_errors();
+			$data['header'] = ( is_null($id)?'Add Widget Position':'Update Widget Position');
+    		$this->bep_site->set_crumb('Widget Position','ad/admin/domains/widget');
+			$this->bep_site->set_crumb($data['header'],'ad/admin/domains/formwidget/'.$id);
+			$data['page'] = $this->config->item('backendpro_template_admin') . "domains/form_widget";
+			$data['module'] = 'ad';
+			$this->load->view($this->_container,$data);
+		}
+		else
+		{
+			// Save form
+			if( is_null($id))
+			{
+				// CREATE
+				// Fetch form values
+				$dom['toplevelhost'] = $this->input->post('toplevelhost');
+				$dom['pos'] = $this->input->post('pos');
+				$dom['created'] = date('Y-m-d H:i:s');
+
+				$this->db->trans_begin();
+				$this->ad_model->insert('Widget',$dom);
+
+				if($this->db->trans_status() === TRUE)
+				{
+					$this->db->trans_commit();
+					flashMsg('success',sprintf('Insert position saved for %s',$dom['toplevelhost']));
+				}
+				else
+				{
+					$this->db->trans_rollback();
+					flashMsg('error',sprintf('Failed to save insert position for %s',$dom['toplevelhost']));
+				}
+				redirect('ad/admin/domains/widget');
+			}
+			else
+			{
+				// SAVE
+				$dom['id'] = $this->input->post('id');
+				$dom['toplevelhost'] = $this->input->post('toplevelhost');
+				$dom['pos'] = $this->input->post('pos');
+				$dom['modified'] = date('Y-m-d H:i:s');
+
+				$this->db->trans_begin();
+				$this->ad_model->update('Widget',$dom,array('id'=>$dom['id']));
+
+				if($this->db->trans_status() === TRUE)
+				{
+					$this->db->trans_commit();
+					flashMsg('success',sprintf('%s updated',$dom['toplevelhost']));
+				}
+				else
+				{
+					$this->db->trans_rollback();
+					flashMsg('error',sprintf('Failed to update %s',$dom['toplevelhost']));
+				}
+				redirect('ad/admin/domains/widget');
+			}
+		}
+	}
+
+
+
 	/**
 	 * Delete
 	 *
@@ -410,6 +542,29 @@ class Domains extends Admin_Controller
 
 		flashMsg('success','Position(s) deleted');
 		redirect('ad/admin/domains/position','location');
+	}
+
+	function delwidget()
+	{
+		if(FALSE === ($selected = $this->input->post('select')))
+		{
+			redirect('ad/admin/domains/widget','location');
+		}
+
+		foreach($selected as $user)
+		{
+			if($user != 1)
+			{	// Delete as long as its not the Administrator account
+				$this->ad_model->delete('Widget',array('id'=>$user));
+			}
+			else
+			{
+				flashMsg('error',$this->lang->line('userlib_administrator_delete'));
+			}
+		}
+
+		flashMsg('success','Widget Position Rule(s) deleted');
+		redirect('ad/admin/domains/widget','location');
 	}
 
 }

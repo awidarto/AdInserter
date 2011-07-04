@@ -22,11 +22,11 @@
  * @package         BackendPro
  * @subpackage      Controllers
  */
-class Ad extends Public_Controller
+class Ad extends Admin_Controller
 {
 	function Ad()
 	{
-		parent::Public_Controller();
+		parent::Admin_Controller();
 
 		$this->load->helper('form');
 
@@ -35,7 +35,7 @@ class Ad extends Public_Controller
 		$this->lang->load('userlib');
 
 		// Set breadcrumb
-		$this->bep_site->set_crumb('Ad Campaign','ad');
+		$this->bep_site->set_crumb('Ad Campaign','ad/admin/ad');
 
 		// Check for access permission
 		//check('Members');
@@ -60,7 +60,7 @@ class Ad extends Public_Controller
 
 		// Display Page
 		$data['header'] = 'Ad Campaign';
-		$data['page'] = $this->config->item('backendpro_template_public') . "view";
+		$data['page'] = $this->config->item('backendpro_template_admin') . "ad/view";
 		$data['module'] = 'ad';
 		$this->load->view($this->_container,$data);
 	}
@@ -79,7 +79,7 @@ class Ad extends Public_Controller
 
 		// Display Page
 		$data['header'] = 'Dashboard';
-		$data['page'] = $this->config->item('backendpro_template_public') . "view_dashboard";
+		$data['page'] = $this->config->item('backendpro_template_admin') . "ad/view_dashboard";
 		$data['module'] = 'ad';
 		$this->load->view($this->_container,$data);
 	}
@@ -94,25 +94,10 @@ class Ad extends Public_Controller
 
 		// Display Page
 		$data['header'] = 'Reports';
-		$data['page'] = $this->config->item('backendpro_template_public') . "view_report";
+		$data['page'] = $this->config->item('backendpro_template_admin') . "ad/view_report";
 		$data['module'] = 'ad';
 		$this->load->view($this->_container,$data);
 	}
-
-	function widget($size = 22)
-	{
-		//is_user();
-		
-		$size = (in_array($size,array(22,32,64,128)))?$size:22;
-		
-		// Get Member Infomation
-		$data['size'] = $size;
-
-		// Display Page
-		$this->load->module_view('ad','public/view_widget', $data);
-	}
-	
-	
 
 	/**
 	 * Set Profile Defaults
@@ -134,8 +119,8 @@ class Ad extends Public_Controller
 		$this->validation->set_default_value('dob_m','01');
 		$this->validation->set_default_value('dob_d','01');
 		$this->validation->set_default_value('street','MH Thamrin');
-	  $this->validation->set_default_value('city','Jakarta');                                         
-    $this->validation->set_default_value('zip','90210');     
+	    $this->validation->set_default_value('city','Jakarta');                                         
+        $this->validation->set_default_value('zip','90210');     
 		$this->validation->set_default_value('country','Indonesia');
 		$this->validation->set_default_value('domain',base_url());
     }
@@ -291,9 +276,9 @@ class Ad extends Public_Controller
 
 			// Display form
 			$this->validation->output_errors();
-			$data['header'] = ( is_null($id)?$this->bep_assets->icon('titles/64/add-campaign'):$this->bep_assets->icon('titles/64/update-campaign'));
-			$this->bep_site->set_crumb($data['header'],'ad/form/'.$id);
-			$data['page'] = $this->config->item('backendpro_template_public') . "form_campaign";
+			$data['header'] = ( is_null($id)?'New Campaign':'Update Campaign');
+			$this->bep_site->set_crumb($data['header'],'ad/admin/ad/form/'.$id);
+			$data['page'] = $this->config->item('backendpro_template_admin') . "ad/form_campaign";
 			$data['module'] = 'ad';
 			$this->load->view($this->_container,$data);
 		}
@@ -318,13 +303,13 @@ class Ad extends Public_Controller
 
 				    $this->_upload_files($campaign_id);
 
-    				redirect('ad/schedule/'.$campaign_id.'/new');
+    				redirect('ad/admin/ad/schedule/'.$campaign_id.'/new');
 				}
 				else
 				{
 					$this->db->trans_rollback();
 					flashMsg('error',sprintf('Failed to save %s',$campaign['cpn_name']));
-    				redirect('ad');
+    				redirect('ad/admin/ad/');
 				}
 			}
 			else
@@ -348,7 +333,7 @@ class Ad extends Public_Controller
 					$this->db->trans_rollback();
 					flashMsg('error',sprintf('Failed to update %s',$campaign['cpn_name']));
 				}
-				redirect('ad');
+				redirect('ad/admin/ad/');
 			}
 		}
 	}
@@ -431,8 +416,8 @@ class Ad extends Public_Controller
 			// Display form
 			$this->validation->output_errors();
 			$data['header'] = ( is_null($id)?'Set Audience':'Update Audience');
-			$this->bep_site->set_crumb($data['header'],'ad/audience/'.$id);
-			$data['page'] = $this->config->item('backendpro_template_public') . "form_audience";
+			$this->bep_site->set_crumb($data['header'],'ad/admin/ad/audience/'.$id);
+			$data['page'] = $this->config->item('backendpro_template_admin') . "ad/form_audience";
 			$data['module'] = 'ad';
 			$this->load->view($this->_container,$data);
 		}
@@ -459,7 +444,7 @@ class Ad extends Public_Controller
 					$this->db->trans_rollback();
 					flashMsg('error','Failed to save campaign');
 				}
-				redirect('ad');
+				redirect('ad/admin/ad/');
 			}
 			else
 			{
@@ -494,7 +479,7 @@ class Ad extends Public_Controller
 					$this->db->trans_rollback();
 					flashMsg('error',sprintf('Failed to update %s',$campaign['cpn_name']));
 				}
-				redirect('ad');
+				redirect('ad/admin/ad/');
 			}
 		}
 	}
@@ -567,7 +552,7 @@ class Ad extends Public_Controller
 			$this->validation->output_errors();
 			$data['header'] = ( is_null($id)?'Create New Schedule':'Set Schedule Dates');
 			$this->bep_site->set_crumb($data['header'],'ad/form/'.$id);
-			$data['page'] = $this->config->item('backendpro_template_public') . "form_schedule";
+			$data['page'] = $this->config->item('backendpro_template_admin') . "ad/form_schedule";
 			$data['module'] = 'ad';
 			$this->load->view($this->_container,$data);
 		}
@@ -589,13 +574,13 @@ class Ad extends Public_Controller
 				{
 					$this->db->trans_commit();
 					flashMsg('success',sprintf('Campaign: %s saved, Please Set Initial Schedule',$campaign['cpn_name']));
-    				redirect('ad/schedule/'.$campaign_id);
+    				redirect('ad/admin/ad/schedule/'.$campaign_id);
 				}
 				else
 				{
 					$this->db->trans_rollback();
 					flashMsg('error',sprintf('Failed to save %s',$campaign['cpn_name']));
-    				redirect('ad');
+    				redirect('ad/admin/ad/');
 				}
 			}
 			else
@@ -617,7 +602,7 @@ class Ad extends Public_Controller
 				{
 					$this->db->trans_rollback();
 					flashMsg('error',sprintf('Failed to update %s',$campaign['cpn_name']));
-					redirect('ad');
+					redirect('ad/admin/ad/');
 				}
 			}
 		}
@@ -858,7 +843,7 @@ class Ad extends Public_Controller
 	{
 		if(FALSE === ($selected = $this->input->post('select')))
 		{
-			redirect('ad','location');
+			redirect('ad/admin/ad/','location');
 		}
 
 		foreach($selected as $cpn)
