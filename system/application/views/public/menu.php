@@ -1,4 +1,4 @@
-<?php if(preg_match( '/login/',current_url()) == false): ?>
+<?php if(!(preg_match( '/login/',current_url()) || uri_string() == "")): ?>    
 <table  style="width:100%;">
     <tr>
         <td  style="text-align:left;border:none;vertical-align:middle;font-size:12px;font-weight:bold;padding:10px;color:orange;">

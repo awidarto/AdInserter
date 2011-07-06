@@ -27,16 +27,24 @@ class Welcome extends Public_Controller
 	function Welcome()
 	{
 		parent::Public_Controller();
+		$this->load->module_library('auth','auth_form_processing');
+		
+	}
+	
+	function index(){
+	    $this->auth_form_processing->login_form($this->_container);
 	}
 
+/*
 	function index()
 	{
 		// Display Page
 		$data['header'] = "Welcome";
-		$data['page'] = $this->config->item('backendpro_template_public') . 'welcome';
-		$data['module'] = 'welcome';
+		$data['page'] = $this->config->item('backendpro_template_public') . 'form_login';
+		$data['module'] = 'auth';
 		$this->load->view($this->_container,$data);
 	}
+*/
 }
 
 

@@ -53,7 +53,7 @@ class Ad extends Public_Controller
 	 */
 	function index()
 	{
-		//is_user();
+		$this->_check_login();
 		
 		// Get Member Infomation
 		$data['members'] = $this->ad_model->getCampaign(array('user_id'=>$this->session->userdata('id')));
@@ -72,7 +72,7 @@ class Ad extends Public_Controller
 	 */
 	function dashboard()
 	{
-		//is_user();
+		$this->_check_login();
 		
 		// Get Member Infomation
 		$data['members'] = $this->ad_model->getCampaign(array('user_id'=>$this->session->userdata('id')));
@@ -87,7 +87,7 @@ class Ad extends Public_Controller
 
 	function reports()
 	{
-		//is_user();
+		$this->_check_login();
 		
 		// Get Member Infomation
 		$data['members'] = $this->ad_model->getCampaign(array('user_id'=>$this->session->userdata('id')));
@@ -101,7 +101,7 @@ class Ad extends Public_Controller
 
 	function widget($size = 22)
 	{
-		//is_user();
+
 		
 		$size = (in_array($size,array(22,32,64,128)))?$size:22;
 		
@@ -1029,6 +1029,13 @@ class Ad extends Public_Controller
     	}
 
     	return $return_value;
+    }
+    
+    function _check_login(){
+        if ( !is_user() )
+		{
+			redirect(base_url(),'location');
+		}
     }
     
 	

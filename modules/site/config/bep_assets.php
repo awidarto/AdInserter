@@ -81,7 +81,7 @@ $config['asset'][] = array('file'=>'bep_access_control.js', 'needs'=>'jquery.tre
 $config['asset'][] = array('file'=>'fullcalendar.min.js','position'=>'header','name'=>'fullcalendar_js');
 $config['asset'][] = array('file'=>'jquery.timepickr.js','position'=>'header','name'=>'timepickr_js');
 $config['asset'][] = array('file'=>'jquery-calendrical/jquery.calendrical.js','position'=>'header','name'=>'calendrical_js');
-$config['asset'][] = array('file'=>'jquery-ui-1.8.13.custom.min.js','position'=>'header','name'=>'fullcalendar_ui');
+$config['asset'][] = array('file'=>'jquery-ui-1.8.14.custom.min.js','position'=>'header','name'=>'fullcalendar_ui');
 $config['asset'][] = array('file'=>'jquery-ui-timepicker-addon.js','position'=>'header','name'=>'timepicker_ui');
 $config['asset'][] = array('file'=>'iColorPicker.js','position'=>'header','name'=>'colorpicker');
 $config['asset'][] = array('file'=>'gcal.js', 'position'=>'header');

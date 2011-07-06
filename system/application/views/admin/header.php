@@ -8,9 +8,13 @@
 	<?php print $this->bep_site->get_js_blocks();?>
 </head>
 <body>
-
 <div id="wrapper">
+
     <div id="header">
+        <?php print displayStatus();?>
+        <script>
+            $('.status_box').delay(1000).slideUp('slow','linear');
+        </script>
         <h1>&nbsp;</h1>
         <div id="info">
             <?php print anchor('',$this->bep_assets->icon('titles/32/view-website'))?>&nbsp;&nbsp;&nbsp;&nbsp;

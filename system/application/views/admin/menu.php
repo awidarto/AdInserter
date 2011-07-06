@@ -12,7 +12,7 @@ Examples can be seen below for menu_bep_system
     <li id="menu_position"><?php print anchor('ad/admin/domains/position',$this->bep_assets->icon('titles/32/insert_position'))?></li>
     <li id="menu_widget"><?php print anchor('ad/admin/domains/widget',$this->bep_assets->icon('titles/32/widget_position'))?></li>
     <?php if(check('System',NULL,FALSE)):?>
-    <li id="menu_bep_system"><?php print $this->bep_assets->icon('titles/32/system');?></span>
+    <li id="menu_bep_system"><span><?php print $this->bep_assets->icon('titles/32/system');?></span>
         <ul>
             <?php if(check('Members',NULL,FALSE)):?><li><?php print anchor('auth/admin/members',$this->bep_assets->icon('titles/32/member'))?></li><?php endif;?>
             <?php if(check('Access Control',NULL,FALSE)):?><li><?php print anchor('auth/admin/access_control',$this->bep_assets->icon('titles/32/access-control'))?></li><?php endif;?>
