@@ -9,7 +9,7 @@
 <style>
     th {padding:2px 3px;}
 </style>
-<?php print form_open('ad/delete')?>
+<?php print form_open('ad/admin/ad/delete')?>
 <table class="data_grid" cellspacing="0">
     <thead>
         <tr>
@@ -54,9 +54,9 @@
             <td><?php print $row['cpn_landing_uri']?></td>
             <td><?php print date('d M Y',strtotime($row['datecreated']))?></td>
             <td class="middle"><?php print $this->bep_assets->icon($active);?></td>
-            <td class="middle"><a href="<?php print site_url('ad/schedule/'.$row['id'].'/update')?>"><?php print $this->bep_assets->icon('application');?></a></td>
-            <td class="middle"><a href="<?php print site_url('ad/audience/'.$row['id'])?>"><?php print $this->bep_assets->icon('user');?></a></td>
-            <td class="middle"><a href="<?php print site_url('ad/form/'.$row['id'])?>"><?php print $this->bep_assets->icon('pencil');?></a></td>
+            <td class="middle"><a href="<?php print site_url('ad/admin/ad/schedule/'.$row['id'].'/update')?>"><?php print $this->bep_assets->icon('application');?></a></td>
+            <td class="middle"><a href="<?php print site_url('ad/admin/ad/audience/'.$row['id'])?>"><?php print $this->bep_assets->icon('user');?></a></td>
+            <td class="middle"><a href="<?php print site_url('ad/admin/ad/form/'.$row['id'])?>"><?php print $this->bep_assets->icon('pencil');?></a></td>
             <td><?php print $delete?></td>
         </tr>
         <?php endforeach; ?>

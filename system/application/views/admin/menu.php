@@ -8,9 +8,9 @@ Examples can be seen below for menu_bep_system
 <ul id="menu">
     <li id="menu_bep_home"><?php print anchor('admin',$this->bep_assets->icon('titles/32/dashboard'))?></li>
     <li id="menu_campaign"><?php print anchor('ad/admin/ad',$this->bep_assets->icon('titles/32/campaign'))?></li>
-    <li id="menu_top_domain"><?php print anchor('ad/admin/domains','Top Domains',array('class'=>'icon_world_go'))?></li>
-    <li id="menu_position"><?php print anchor('ad/admin/domains/position','Insert Position',array('class'=>'icon_world_go'))?></li>
-    <li id="menu_widget"><?php print anchor('ad/admin/domains/widget','Widget Position',array('class'=>'icon_world_go'))?></li>
+    <li id="menu_top_domain"><?php print anchor('ad/admin/domains',$this->bep_assets->icon('titles/32/top_domains'))?></li>
+    <li id="menu_position"><?php print anchor('ad/admin/domains/position',$this->bep_assets->icon('titles/32/insert_position'))?></li>
+    <li id="menu_widget"><?php print anchor('ad/admin/domains/widget',$this->bep_assets->icon('titles/32/widget_position'))?></li>
     <?php if(check('System',NULL,FALSE)):?>
     <li id="menu_bep_system"><?php print $this->bep_assets->icon('titles/32/system');?></span>
         <ul>
