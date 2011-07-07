@@ -97,7 +97,7 @@ class Preference_form
 			}
 			else
 			{
-				$this->field[$field]['label'] = ucwords(ereg_replace('_',' ',$field));
+				$this->field[$field]['label'] = ucwords(preg_replace('/_/',' ',$field));
 			}
 
 			// Check a type is given, if not set it to 'text'
