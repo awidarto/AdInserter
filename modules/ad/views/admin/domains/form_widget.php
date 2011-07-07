@@ -9,7 +9,7 @@
             </li>
             <li>
                 <?php print form_label('Widget Position','pos')?>
-                <?php print form_dropdown('pos',array('none'=>'none','top'=>'top','frame_top'=>'frame top'),$this->validation->pos,'id="pos" class="text"')?>
+                <?php print form_dropdown('pos',array('none'=>'none','top'=>'top'),$this->validation->pos,'id="pos" class="text"')?>
             </li>
             <li class="submit">
                 <?php print form_hidden('id',$this->validation->id)?>
