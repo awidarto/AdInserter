@@ -675,18 +675,20 @@ class Ad extends Public_Controller
             $loc = 'http://www.google.com';
         }else{
             $loc = $this->ad_model->fetch('AdSession','id,landing_uri,cpn_id',null,array('adsessid'=>$adsess));
-            
-            $rs = $loc->row();
-            $loc = $rs->landing_uri;
-            $cpn_id = $rs->cpn_id;
-            $sid = $rs->id;
+            if($loc->num_rows() > 0){
+	            $rs = $loc->row();
+	            $loc = $rs->landing_uri;
+	            $cpn_id = $rs->cpn_id;
+	            $sid = $rs->id;
+		        $this->ad_model->incrementField('Campaign','actual_click','id = '.$cpn_id);
+		        $this->ad_model->update('AdSession',array('clicked'=>'1'),array('id'=>$sid));
+			}else{
+	            $loc = 'http://www.google.com';
+			}
         }
         
         //$this->ad_model->update('Campaign',array('actual_click'=>'actual_click'+1),array('id'=>$cpn_id));
         
-        $this->ad_model->incrementField('Campaign','actual_click','id = '.$cpn_id);
-        
-        $this->ad_model->update('AdSession',array('clicked'=>'1'),array('id'=>$sid));
         
         redirect($loc,'location');
     }
@@ -751,25 +753,33 @@ class Ad extends Public_Controller
         
         //get image
         $width = ($is_browser)?700:$width;
-        
-        $img = $this->ad_model->getBanner(sprintf('campaign_id = %s and width < %s',$cpn_id,$width));
-        
-        if($img->num_rows() > 0){
-            $img = $img->row();
-            $image_name = $img->filename;
-            $image_type = $img->filetype;
-        }else{
+        if($cpn_id == 'default'){
             $image_name = 'default/banner_215x34.jpg';
             $image_type = '.jpg';
-        }
+			$landing_uri = $this->config->item('default_landing_uri');
+			$user_id = 1;
+		}else{
+	        $img = $this->ad_model->getBanner(sprintf('campaign_id = %s and width < %s',$cpn_id,$width));
+
+	        if($img->num_rows() > 0){
+	            $img = $img->row();
+	            $image_name = $img->filename;
+	            $image_type = $img->filetype;
+	        }else{
+	            $image_name = 'default/banner_215x34.jpg';
+	            $image_type = '.jpg';
+	        }
+			$landing_uri = $r->cpn_landing_uri;
+			$user_id = $r->user_id;
+		}
         
         
         $adsess = array(
             'adsessid'=>$adsess,
             'cpn_id'=> $cpn_id,
             'image_name'=>$image_name,
-            'landing_uri'=>$r->cpn_landing_uri,
-            'user_id'=>$r->user_id,
+            'landing_uri'=>$landing_uri,
+            'user_id'=>$user_id,
             'position'=>$pos,
             'user_agent' => $_SERVER['HTTP_USER_AGENT']
             /*

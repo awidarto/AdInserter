@@ -49,7 +49,7 @@
 	                	<?php print $this->lang->line('general_save')?>
 	                </button>
 
-	                <a href="<?php print  site_url('ad')?>" class="negative">
+	                <a href="<?php print  site_url('ad/admin/ad')?>" class="negative">
 	                	<?php print  $this->bep_assets->icon('cross');?>
 	                	<?php print $this->lang->line('general_cancel')?>
 	                </a>

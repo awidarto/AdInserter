@@ -1,7 +1,11 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+$config['default_landing_uri'] = 'http://www.telkomsel.co.id';
+
 $config['absolute_upload_path'] = '/Applications/xampp/htdocs/runner2/public/uploads/';
 $config['absolute_media_path'] = '/Applications/xampp/htdocs/runner2/public/media/';
+
+
 
 $config['documents_scope_array']    = array(
         'all' => 'All Fields',
