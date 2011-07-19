@@ -1,5 +1,5 @@
 <h2><?php print $header?></h2>
-<?php print form_open_multipart('ad/audience/'.$this->validation->id,array('class'=>'horizontal'))?>
+<?php print form_open_multipart('ad/admin/ad/audience/'.$this->validation->id,array('class'=>'horizontal'))?>
     <fieldset>
         <ol>
             <li>

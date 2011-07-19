@@ -202,7 +202,7 @@
         <div class='external-event' ref="<?=$campaign['id']?>"><?=$campaign['cpn_name']?></div>
     </div>
 -->
-<?php print form_open_multipart('ad/schedule/'.$this->validation->id,array('class'=>'horizontal'))?>
+<?php print form_open_multipart('ad/admin/ad/schedule/'.$this->validation->id,array('class'=>'horizontal'))?>
     <fieldset>
         <ol>
 		        <li>
