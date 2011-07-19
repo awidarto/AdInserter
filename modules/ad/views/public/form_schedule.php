@@ -132,8 +132,8 @@
 				, "json");
 			
 			//$('#calendar').fullCalendar( 'renderEvent', eventObject, true );
-			$('#calendar').fullCalendar( 'refetchEvents' );
-			$('#calendar').fullCalendar( 'rerenderEvents' );
+			jQuery('#calendar').fullCalendar( 'refetchEvents' );
+			jQuery('#calendar').fullCalendar( 'rerenderEvents' );
 	}
 	
 	function setEventForm(event){
