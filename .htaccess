@@ -1,3 +1,3 @@
 RewriteEngine on
-RewriteCond $1 !^(index\.php|info\.php|phpmyadmin|images|public|assets|css|js|user_guide|ci_user_guide|robots\.txt)
+RewriteCond $1 !^(index\.php|info\.php|phpmyadmin|testbed|images|public|assets|css|js|user_guide|ci_user_guide|robots\.txt)
 RewriteRule ^(.*)$ index.php/$1 [L]

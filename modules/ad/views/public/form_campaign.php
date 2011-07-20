@@ -48,6 +48,10 @@
             </li>
 -->
             <li>
+                <?php print form_label('Source','cpn_source')?>
+                <?php print form_dropdown('cpn_source',$this->config->item('campaign_sources'),$this->validation->cpn_source);?>
+            </li>
+            <li>
                 <?php print form_label('Active','active')?>
                 <?php print $this->lang->line('general_yes')?> <?php print form_radio('active','1',$this->validation->set_radio('active','1'),'id="active"')?>
                 <?php print $this->lang->line('general_no')?> <?php print form_radio('active','0',$this->validation->set_radio('active','0'))?>

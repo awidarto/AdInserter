@@ -5,7 +5,7 @@ $config['default_landing_uri'] = 'http://www.telkomsel.co.id';
 $config['absolute_upload_path'] = '/Applications/xampp/htdocs/runner2/public/uploads/';
 $config['absolute_media_path'] = '/Applications/xampp/htdocs/runner2/public/media/';
 
-
+$config['campaign_sources'] = array('internal'=>'Internal','admob'=>'AdMob','inmobi'=>'Inmobi');
 
 $config['documents_scope_array']    = array(
         'all' => 'All Fields',

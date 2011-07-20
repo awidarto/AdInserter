@@ -29,7 +29,8 @@ class Ad extends Admin_Controller
 		parent::Admin_Controller();
 
 		$this->load->helper('form');
-
+		$this->load->config('ad');
+		
         $this->load->model('ad_model');
 		// Load userlib language
 		$this->lang->load('userlib');
@@ -142,6 +143,7 @@ class Ad extends Admin_Controller
 		//$data['company_id'] = $this->input->post('company_id');
 		$data['user_id'] = $this->session->userdata('id');
 		$data['cpn_name'] = $this->input->post('cpn_name');
+		$data['cpn_source'] = $this->input->post('cpn_source');
 		$data['cpn_start'] = $this->input->post('cpn_start');
         $data['cpn_end'] = $this->input->post('cpn_end');
 		$data['cpn_time_start'] = $this->input->post('cpn_time_start');
@@ -217,6 +219,7 @@ class Ad extends Admin_Controller
         $fields['company_id'] = 'Company ID';
         $fields['user_id'] = 'User ID';
         $fields['cpn_name'] = 'Campaign Title';
+        $fields['cpn_source'] = 'Campaign Source';
         $fields['cpn_start'] = 'Campaign Start';
         $fields['cpn_end'] = 'Campaign End';
         $fields['cpn_time_start'] = 'Time Start';
@@ -233,6 +236,7 @@ class Ad extends Admin_Controller
         $rules['company_id'] = 'trim';
         $rules['user_id'] = 'trim';
         $rules['cpn_name'] = 'trim';
+        $rules['cpn_source'] = 'trim';
         $rules['cpn_start'] = 'trim';
         $rules['cpn_end'] = 'trim';
         $rules['cpn_time_start'] = 'trim';

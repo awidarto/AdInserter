@@ -53,6 +53,10 @@
                 <?php print $this->lang->line('general_no')?> <?php print form_radio('active','0',$this->validation->set_radio('active','0'))?>
             </li>
             <li>
+                <?php print form_label('Source','cpn_source')?>
+                <?php print form_dropdown('cpn_source',$this->config->item('campaign_sources'),$this->validation->cpn_source);?>
+            </li>
+            <li>
                 <table>
                     <thead>
                         <td><?php print form_label('Upload Files','')?></td>
